@@ -1,0 +1,31 @@
+<mat-sidenav-container class="sidenav-container" autosize>
+  <mat-sidenav #sidenav fixedInViewport class="sidenav" [position]="getSidenavPosition()" [attr.role]="(isTablet | async) ? 'dialog' : 'navigation'" [mode]="(isTablet | async) ? 'over' : 'side'" [opened]="(isTablet | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item [routerLink]="['']" routerLinkActive="list-item-active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon matListIcon aria-label="Dashboard">dashboard</mat-icon>
+        <a matLine>Dashboard</a>
+      </mat-list-item>
+      <mat-list-item [routerLink]="['settings']" routerLinkActive="list-item-active" [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon matListIcon aria-label=" Settings">settings</mat-icon>
+        <a matLine>Settings</a>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item (click)="exit()">
+        <mat-icon matListIcon aria-label="Exit">exit_to_app</mat-icon>
+        <span matLine>Exit</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" *ngIf="data | async; let data">
+      <span *ngIf="getSidenavPosition() === 'end'">{{ data.label }}</span>
+      <span *ngIf="getSidenavPosition() === 'end'" class="nav-spacer"></span>
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()" *ngIf="isTablet | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span *ngIf="getSidenavPosition() === 'start'" class="start-label">{{ data.label }}</span>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

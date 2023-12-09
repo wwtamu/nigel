@@ -1,0 +1,43 @@
+<div class="settings-container">
+  <mat-accordion *ngIf="getSettings(); let settings">
+    <mat-expansion-panel [expanded]="settings.general.expanded" (afterExpand)="updateSetting('general.expanded', true)" (afterCollapse)="updateSetting('general.expanded', false)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>General</mat-panel-title>
+        <mat-panel-description>Configure dashboard, etc.</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="4" rowHeight="60px">
+        <mat-grid-tile colspan="1" rowspan="1">
+          <mat-slide-toggle [checked]="settings.general.welcomeDisplayed" (toggleChange)="updateSetting('general.welcomeDisplayed', !settings.general.welcomeDisplayed)">
+            Welcome Displayed
+          </mat-slide-toggle>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="settings.navigation.expanded" (afterExpand)="updateSetting('navigation.expanded', true)" (afterCollapse)="updateSetting('navigation.expanded', false)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Navigation</mat-panel-title>
+        <mat-panel-description>Configure navbar, sidenav, etc.</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="4" rowHeight="80px">
+        <mat-grid-tile colspan="1" rowspan="1">
+          <mat-form-field>
+            <mat-label>Sidenav Position</mat-label>
+            <mat-select [value]="settings.navigation.sidenavPosition" (selectionChange)="updateSetting('navigation.sidenavPosition', $event.value)">
+              <mat-option *ngFor="let sidenavPosition of ['start', 'end']" [value]="sidenavPosition">{{sidenavPosition}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="settings.theme.expanded" (afterExpand)="updateSetting('theme.expanded', true)" (afterCollapse)="updateSetting('theme.expanded', false)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Theme</mat-panel-title>
+        <mat-panel-description>Configure primary, accent, etc.</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="4" rowHeight="50px">
+        <mat-grid-tile colspan="1" rowspan="1">
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

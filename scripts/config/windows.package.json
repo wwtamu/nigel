@@ -1,0 +1,10 @@
+{
+  "dir": "./",
+  "overwrite": true,
+  "asar": true,
+  "platform": "win32",
+  "arch": "ia32",
+  "prune": true,
+  "out": "builds",
+  "executableName": "nigel"
+}
